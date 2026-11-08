@@ -1,0 +1,2 @@
+package com.srm.inventory.entity;
+public enum PaymentStatus { PAYMENT_PENDING, PAYMENT_SUBMITTED, PAYMENT_VERIFIED, PAYMENT_REJECTED, CASH_PENDING, CASH_COLLECTED }

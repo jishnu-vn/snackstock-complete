@@ -1,0 +1,3 @@
+package com.srm.inventory.controller;
+import com.srm.inventory.dto.ProfitReport; import com.srm.inventory.entity.Product; import com.srm.inventory.service.*; import org.springframework.web.bind.annotation.*; import java.util.*;
+@RestController @RequestMapping("/api/reports") public class ReportController { private final ProductService products; private final ReportService reports; public ReportController(ProductService p,ReportService r){products=p;reports=r;} @GetMapping("/low-stock") public List<Product> lowStock(){return products.list(null,true);} @GetMapping("/profit") public ProfitReport profit(@RequestParam(defaultValue="month") String period){return reports.profit(period);} }

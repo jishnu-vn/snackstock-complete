@@ -1,0 +1,4 @@
+-- PostgreSQL reference schema. Spring Data JPA creates the same structure at runtime.
+CREATE TABLE products (id BIGSERIAL PRIMARY KEY, name VARCHAR(100) NOT NULL, sku VARCHAR(30) NOT NULL UNIQUE, price NUMERIC(12,2) NOT NULL CHECK (price > 0), stock_quantity INTEGER NOT NULL CHECK (stock_quantity >= 0), reorder_level INTEGER NOT NULL CHECK (reorder_level >= 0), category VARCHAR(50));
+CREATE TABLE customer_orders (id BIGSERIAL PRIMARY KEY, customer_name VARCHAR(100) NOT NULL, customer_email VARCHAR(120) NOT NULL, status VARCHAR(20) NOT NULL, created_at TIMESTAMP NOT NULL);
+CREATE TABLE order_items (id BIGSERIAL PRIMARY KEY, order_id BIGINT NOT NULL REFERENCES customer_orders(id) ON DELETE CASCADE, product_id BIGINT NOT NULL REFERENCES products(id), quantity INTEGER NOT NULL CHECK (quantity > 0), unit_price NUMERIC(12,2) NOT NULL);
